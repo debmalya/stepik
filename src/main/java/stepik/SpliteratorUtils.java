@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class SpliteratorUtils {
@@ -24,7 +25,7 @@ public class SpliteratorUtils {
 	 * @param args
 	 */
 	public static List<Double> spliteratorWork(List<Double> lst) {
-		return lst.stream().filter(x->x>0).map(Math::sqrt).collect(Collectors.toList());
+		return lst.stream().filter(x -> x > 0).map(Math::sqrt).collect(Collectors.toList());
 	}
 
 	/**
@@ -36,9 +37,27 @@ public class SpliteratorUtils {
 	 * @param list
 	 */
 	public static void print(List<Double> list) {
-		list.spliterator().trySplit().forEachRemaining(i->{if (i>=2) System.out.println(i);});
-        System.out.println();
-        list.spliterator().forEachRemaining(i->{if (i>=10) System.out.println(i);});
+		list.spliterator().trySplit().forEachRemaining(i -> {
+			if (i >= 2)
+				System.out.println(i);
+		});
+		System.out.println();
+		list.spliterator().forEachRemaining(i -> {
+			if (i >= 10)
+				System.out.println(i);
+		});
 	}
+
+	/**
+	 * 
+	 * @param set
+	 * @return
+	 */
+	public static Set<Integer> removeAllNumbersMoreThan10(Set<Integer> set) {
+		// put your code here
+		return set.stream().filter(num -> num <= 10).collect(Collectors.toSet());
+	}
+
+
 
 }
